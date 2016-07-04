@@ -19,6 +19,7 @@
  */
 package moa.streams.generators;
 
+import java.security.PrivilegedActionException;
 import java.util.Random;
 import com.github.javacliparser.FloatOption;
 import com.github.javacliparser.IntOption;
@@ -159,12 +160,15 @@ public class HyperplaneGenerator extends AbstractOptionHandler implements
     private void addDrift() {
         for (int i = 0; i < this.numDriftAttsOption.getValue(); i++) {
             this.weights[i] += (double) ((double) sigma[i]) * ((double) this.magChangeOption.getValue());
-            if (//this.weights[i] >= 1.0 || this.weights[i] <= 0.0 ||
-                    (1 + (this.instanceRandom.nextInt(100))) <= this.sigmaPercentageOption.getValue()) {
+            if ((1 + (this.instanceRandom.nextInt(100))) <= this.sigmaPercentageOption.getValue()) {
+            	
+            	// reverse the direction of change.
                 this.sigma[i] *= -1;
             }
         }
     }
+    
+
 
     @Override
     public void restart() {

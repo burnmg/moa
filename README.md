@@ -1,3 +1,6 @@
+# About
+This moa version is integrated with hybrid volatility adaptive classification algorithms. 
+
 # MOA (Massive Online Analysis)
 
 ![MOA][logo]
